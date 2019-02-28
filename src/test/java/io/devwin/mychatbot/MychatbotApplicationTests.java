@@ -16,10 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.rivescript.Config;
 import com.rivescript.RiveScript;
 
+import io.devwin.mychatbot.model.Customer;
 import io.devwin.mychatbot.model.Posts;
+import io.devwin.mychatbot.repository.CustomerRepository;
 import io.devwin.mychatbot.repository.PostsRepository;
 
 @RunWith(SpringRunner.class)
@@ -30,7 +31,10 @@ public class MychatbotApplicationTests {
     PostsRepository postsRepository;	
     
 	@Autowired
-	private RiveScript bot;    
+	private RiveScript bot;
+	
+	@Autowired
+	CustomerRepository customerRepository;
     
     @After
     public void cleanup() {
@@ -57,6 +61,22 @@ public class MychatbotApplicationTests {
 			e.printStackTrace();
 		}
 	}
+
+	@Test
+	public void 솔라테스트2() {
+		Customer c = new Customer("1", "Kim", 45);
+		customerRepository.save(c);
+		c = new Customer("2", "Lee", 44);
+		customerRepository.save(c);
+		
+		//Iterable<Customer> list = customerRepository.findAll();
+		List<Customer> list = customerRepository.findByNameEndsWith("Kim");
+		System.out.println("Solr결과:");
+		for(Customer c1:list){
+			System.out.println(c1.toString());
+		}
+	}
+	
 	
 	@Test
 	public void JPA테스트() {
