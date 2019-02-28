@@ -1,4 +1,4 @@
-package io.devwin.mychatbot;
+package io.devwin.mychatbot.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package io.devwin.mychatbot;
+package io.devwin.mychatbot.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

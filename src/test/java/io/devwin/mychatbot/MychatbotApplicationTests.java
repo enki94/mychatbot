@@ -16,7 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.rivescript.Config;
+import com.rivescript.RiveScript;
+
 import io.devwin.mychatbot.model.Posts;
+import io.devwin.mychatbot.repository.PostsRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -24,6 +28,9 @@ public class MychatbotApplicationTests {
 
     @Autowired
     PostsRepository postsRepository;	
+    
+	@Autowired
+	private RiveScript bot;    
     
     @After
     public void cleanup() {
@@ -64,6 +71,14 @@ public class MychatbotApplicationTests {
 		for(Posts p1:list){
 			System.out.println(p1.toString());
 		}
+	}
+	
+	@Test
+	public void 채팅테스트() {
+		bot.sortReplies();
+		String reply = bot.reply("user", "Hello bot!");
+		System.out.println("채팅결과:");
+		System.out.println(reply);
 	}
 
 }
