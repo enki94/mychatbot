@@ -15,4 +15,4 @@ ARG DEPENDENCY=/workspace/app/target/dependency
 COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","-cp","app:app/lib/*","io.devwin.mychatbot.MychatbotApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","-Dspring.profiles.active=docker","io.devwin.mychatbot.MychatbotApplication"]
